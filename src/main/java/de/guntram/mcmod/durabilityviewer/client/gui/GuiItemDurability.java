@@ -318,13 +318,16 @@ public class GuiItemDurability
     
     private void renderItemBreakingOverlay(DrawContext context, ItemStack itemStack, long timeDelta) {
         Window mainWindow = MinecraftClient.getInstance().getWindow();
-        float alpha = 1.0f-((float)timeDelta/1000.0f);
         float xWarn = mainWindow.getScaledWidth()/2;
         float yWarn = mainWindow.getScaledHeight()/2;
         float scale = 5.0f;
-        
-        context.fill(0, 0, mainWindow.getScaledWidth(), mainWindow.getScaledHeight(),
-                0xff0000+ ((int)(alpha*128)<<24));
+
+        if (ConfigurationHandler.showWarnOverlay()) {
+            float alpha = 1.0f-((float)timeDelta/1000.0f);
+            context.fill(0, 0, mainWindow.getScaledWidth(), mainWindow.getScaledHeight(),
+                0xff0000 + ((int) (alpha * 128) << 24)
+            );
+        }
         
         MatrixStack stack = RenderSystem.getModelViewStack();
         stack.push();

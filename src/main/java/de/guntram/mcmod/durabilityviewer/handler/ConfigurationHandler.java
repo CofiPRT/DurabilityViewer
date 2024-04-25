@@ -35,6 +35,7 @@ public class ConfigurationHandler implements ModConfigurationHandler
     private boolean showAllTrinkets;
     private boolean showPercentValues;
     private int warnMode;
+    private boolean showWarnOverlay;
 
     public static ConfigurationHandler getInstance() {
         if (instance==null)
@@ -105,6 +106,7 @@ public class ConfigurationHandler implements ModConfigurationHandler
         showAllTrinkets = config.getBoolean("durabilityviewer.config.showalltrinkets", Configuration.CATEGORY_CLIENT, true, "durabilityviewer.config.tt.showalltrinkets");
         showPercentValues = config.getBoolean("durabilityviewer.config.percentvalues", Configuration.CATEGORY_CLIENT, false, "durabilityviewer.config.tt.percentvalues");
         warnMode = config.getSelection("durabilityviewer.config.warnmode", Configuration.CATEGORY_CLIENT, 1, warnModes, "durabilityviewer.config.tt.warnmode");
+        showWarnOverlay = config.getBoolean("durabilityviewer.config.showwarnoverlay", Configuration.CATEGORY_CLIENT, true, "durabilityviewer.config.tt.showwarnoverlay");
 
         tooltipColor=Formatting.byColorIndex(color);
         if (config.hasChanged())
@@ -159,4 +161,9 @@ public class ConfigurationHandler implements ModConfigurationHandler
     public static boolean getShowPercentValues() { return getInstance().showPercentValues; }
     
     public static int getWarnMode() { return getInstance().warnMode; }
+
+    public static boolean showWarnOverlay() {
+        return getInstance().showWarnOverlay;
+    }
+
 }
